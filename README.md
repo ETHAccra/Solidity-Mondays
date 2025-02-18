@@ -1,7 +1,7 @@
-<div align="center" ><img width="350px" src="https://github.com/eben619/Zero-To-Dapp-Workshop/blob/main/ethAccraHero.png"></div>
+<div align="center" >Solidity Fridays: Weekly Solidity Tutorial<img width="350px" src="https://github.com/eben619/Zero-To-Dapp-Workshop/blob/main/ethAccraHero.png"></div>
 
 
-# Solidity Fridays: Weekly Solidity Tutorial
+
 
 Welcome to **Solidity Fridays**! This is a structured weekly plan to help you learn Solidity, the programming language used to write smart contracts on Ethereum. Each week, we’ll cover a new topic, gradually building your skills from beginner to advanced.
 
