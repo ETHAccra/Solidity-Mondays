@@ -2,7 +2,7 @@
 
 <div align="center" ><img width="350px" src="https://github.com/eben619/Zero-To-Dapp-Workshop/blob/main/ethAccraHero.png"></div>
 
-Welcome to **Solidity Fridays**! This is a structured weekly plan to help you learn Solidity, the programming language used to write smart contracts on Ethereum. Each week, we’ll cover a new topic, gradually building your skills from beginner to advanced.
+Welcome to **Solidity Fridays**! This is a structured weekly plan to help you learn Solidity, the programming language used to write smart contracts on Ethereum and EVM compatible chains. Each week, we’ll cover a new topic, gradually building your skills from beginner to advanced.
 
 ---
 
