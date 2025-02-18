@@ -6,7 +6,7 @@ Welcome to **Solidity Fridays**! This is a structured weekly plan to help you le
 
 ---
 
-## Weekly Schedule
+## <div align="center"><p style="text-align: center;"><strong>Weekly Schedule</strong></p></div>
 
 <details>
 <summary><strong>Week 1: Introduction to Solidity and Blockchain Basics</strong></summary>
