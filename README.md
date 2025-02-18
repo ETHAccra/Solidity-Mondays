@@ -190,3 +190,9 @@ Welcome to **Solidity Fridays**! This is a structured weekly plan to help you le
 
 ## Final Thoughts
 By following this **Solidity Fridays** schedule, you’ll gain a solid understanding of Solidity and Ethereum development. Happy coding! 🚀
+
+Don't forget to follow these ETHAccra channels to get regular Updates.
+
+### Telegram: https://t.me/+pXympPbcG7U5NWI0
+
+### X (Twitter): https://x.com/ETHAccra
