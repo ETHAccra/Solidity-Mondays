@@ -1,4 +1,5 @@
-# Solidity-Fridays
+<div align="center" ><img width="350px" src="https://github.com/eben619/Zero-To-Dapp-Workshop/blob/main/ethAccraHero.png"></div>
+
 
 # Solidity Fridays: Weekly Solidity Tutorial
 
