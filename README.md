@@ -18,8 +18,8 @@ Welcome to **Solidity Fridays**! This is a structured weekly plan to help you le
 - Setting up your development environment (Remix IDE, MetaMask, and Node.js).
 
 ### Materials:
-- **Book**: *Mastering Ethereum* by Andreas M. Antonopoulos and Gavin Wood (Chapter 1: Introduction to Ethereum).
-- **Online Resources**: [Solidity Documentation](https://soliditylang.org/).
+- **Book**: [*Mastering Ethereum* by Andreas M. Antonopoulos and Gavin Wood (Chapter 1: Introduction to Ethereum).](https://ethereum.org/en/learn/)
+- **Online Resources**: [Solidity Documentation](https://soliditylang.org/).   
 - **Tools**: Install Remix IDE and MetaMask.
 
 </details>
