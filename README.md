@@ -1,4 +1,4 @@
-# <div align="center"><p style="text-align: center;"><strong>ETHAccra Solidity Fridays: Weekly Solidity Tutorial</strong></p></div>
+# <div align="center"><p style="text-align: center;"><strong>ETHAccra Solidity Mondays: Weekly Solidity Tutorial</strong></p></div>
 
 <div align="center" ><img width="350px" src="https://github.com/eben619/Zero-To-Dapp-Workshop/blob/main/ethAccraHero.png"></div>
 
