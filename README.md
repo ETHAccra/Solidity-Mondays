@@ -12,10 +12,121 @@ Welcome to **Solidity Fridays**! This is a structured weekly plan to help you le
 <summary><strong>Week 1: Introduction to Solidity and Blockchain Basics</strong></summary>
 
 ### Topics Covered:
-- What is Solidity?
+- Evolution of the Web: Web1, Web2, and Web3
 - Overview of blockchain and Ethereum.
 - Smart contracts: What they are and why they matter.
 - Setting up your development environment (Remix IDE, MetaMask, and Node.js).
+
+
+<h1>📌 Introduction to Blockchain: From Web1 to Solidity on Ethereum</h1>
+
+<h2>🚀 Lesson Overview</h2>
+<p>This lesson covers the evolution of the web (Web1, Web2, Web3), blockchain fundamentals, wallets, Ethereum smart contracts, and Solidity programming.</p>
+
+<hr>
+
+<h2>1️⃣ Evolution of the Web: Web1, Web2, and Web3</h2>
+
+<h3>🌐 Web1: The Static Web (1990s - early 2000s)</h3>
+<ul>
+    <li>Read-only web where users could only consume content.</li>
+    <li>Static websites with minimal interaction.</li>
+    <li><strong>Examples:</strong> Yahoo, early blogs, and company websites.</li>
+</ul>
+
+<h3>🌍 Web2: The Interactive Web (Mid-2000s - Present)</h3>
+<ul>
+    <li>Read and write capabilities, allowing user-generated content.</li>
+    <li>Centralized platforms control data (Facebook, Google, Twitter).</li>
+    <li>Monetization through ads and data collection.</li>
+    <li><strong>Problems:</strong> Privacy issues, censorship, platform dependence.</li>
+</ul>
+
+<h3>🌎 Web3: The Decentralized Web (Emerging Future)</h3>
+<ul>
+    <li>Built on blockchain and smart contracts.</li>
+    <li>Users own their data, assets, and identities.</li>
+    <li>Peer-to-peer interactions without intermediaries.</li>
+    <li><strong>Examples:</strong> Ethereum-based DApps, DAOs, DeFi, NFTs.</li>
+</ul>
+
+<hr>
+
+<h2>2️⃣ What is Blockchain?</h2>
+
+<h3>🔗 Definition</h3>
+<p>Blockchain is a decentralized, distributed ledger that records transactions securely and transparently.</p>
+
+<h3>🔑 Key Features</h3>
+<ul>
+    <li><strong>Decentralization</strong> – No central authority.</li>
+    <li><strong>Transparency</strong> – Publicly accessible transactions.</li>
+    <li><strong>Security</strong> – Cryptographic encryption ensures integrity.</li>
+    <li><strong>Immutability</strong> – Transactions cannot be altered once confirmed.</li>
+</ul>
+
+<h3>📌 Types of Blockchains</h3>
+<ul>
+    <li><strong>Public Blockchains</strong> (Ethereum, Bitcoin) – Open networks, permissionless access.</li>
+    <li><strong>Private Blockchains</strong> (Hyperledger) – Restricted access for enterprises.</li>
+    <li><strong>Consortium Blockchains</strong> – Controlled by multiple entities.</li>
+</ul>
+
+<hr>
+
+<h2>3️⃣ Crypto Wallets</h2>
+
+<h3>🛠 What is a Crypto Wallet?</h3>
+<p>A crypto wallet allows users to store, send, and receive digital assets.</p>
+
+<h3>📌 Types of Wallets</h3>
+<ul>
+    <li><strong>Custodial Wallets</strong> – Centralized control (e.g., Binance, Coinbase).</li>
+    <li><strong>Non-Custodial Wallets</strong> – User-controlled keys (e.g., MetaMask, Trust Wallet).</li>
+    <li><strong>Hardware Wallets</strong> – Secure offline storage (e.g., Ledger, Trezor).</li>
+</ul>
+
+<h3>🔑 Wallet Addresses & Private Keys</h3>
+<ul>
+    <li><strong>Wallet Address</strong> – Public identifier for receiving funds.</li>
+    <li><strong>Private Key</strong> – Secret code controlling wallet access.</li>
+</ul>
+
+<hr>
+
+<h2>4️⃣ Introduction to Ethereum</h2>
+
+<h3>🔹 Ethereum Overview</h3>
+<ul>
+    <li>A decentralized smart contract platform.</li>
+    <li>Uses <strong>Ether (ETH)</strong> as the native cryptocurrency.</li>
+    <li>Supports <strong>ERC20 (tokens)</strong> and <strong>ERC721 (NFTs)</strong>.</li>
+</ul>
+
+<h3>🔹 Ethereum Use Cases</h3>
+<ul>
+    <li><strong>Decentralized Finance (DeFi)</strong> – Lending, borrowing, staking.</li>
+    <li><strong>NFTs</strong> – Digital ownership of assets.</li>
+    <li><strong>DAOs</strong> – Community-driven governance.</li>
+</ul>
+
+<hr>
+
+<h2>5️⃣ Solidity: Smart Contract Programming</h2>
+
+<h3>📌 What is Solidity?</h3>
+<p>A high-level language for writing smart contracts on Ethereum, similar to JavaScript and Python.</p>
+
+
+<h2>6️⃣ Deploying and Interacting with Smart Contracts</h2>
+
+<h3>🚀 Using Remix IDE</h3>
+<ol>
+    <li>Open <a href="https://remix.ethereum.org">Remix</a>.</li>
+    <li>Create a new Solidity file (<code>.sol</code>).</li>
+    <li>Compile and deploy using MetaMask.</li>
+</ol>
+
 
 ### Materials:
 - **Book**: [*Mastering Ethereum* by Andreas M. Antonopoulos and Gavin Wood (Chapter 1: Introduction to Ethereum).](https://ethereum.org/en/learn/)
