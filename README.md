@@ -286,31 +286,7 @@ function getBalance() public view returns (uint256) {
 }
 </code></pre>
 
-<h2>10. Smart Contract Deployment</h2>
-<p>Deploying a Solidity contract requires a development environment like <strong>Remix</strong>, <strong>Hardhat</strong>, or <strong>Foundry</strong>.</p>
 
-<h3>Ethers.js Deployment Script</h3>
-<p>The following script shows how to deploy a contract using Ethers.js:</p>
-<pre><code>
-const { ethers } = require("ethers");
-
-async function deploy() {
-    const provider = new ethers.JsonRpcProvider("https://rpc-url");
-    const wallet = new ethers.Wallet("YOUR_PRIVATE_KEY", provider);
-    const factory = new ethers.ContractFactory(ABI, BYTECODE, wallet);
-    
-    const contract = await factory.deploy();
-    await contract.deployed();
-
-    console.log("Contract deployed at:", contract.address);
-}
-
-deploy();
-</code></pre>
-
-<h2>Conclusion</h2>
-<p>This Solidity fundamentals guide covers essential concepts such as data types, functions, mappings, control structures, events, and smart contract deployment. Mastering these concepts is crucial for building robust blockchain applications.</p>
-<p>Stay tuned for <strong>next week's Solidity Mondays</strong> where we’ll dive into <strong>Solidity Security Best Practices and Gas Optimization Techniques</strong>! 🚀</p>
 
 ### Materials:
 - **Book**: *Mastering Ethereum* (Chapter 7: Smart Contracts and Solidity).
