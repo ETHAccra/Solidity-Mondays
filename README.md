@@ -175,6 +175,10 @@ contract MyFirstContract {
 </ul>
 
 <h2>3. Functions in Solidity</h2>
+
+***Basic Structure Of A function***<br>
+<img src="https://github.com/eben619/Celo_Africa_Dao-Ghana_University_Tour/blob/main/function.avif" width="500px"><br>
+
 <p>Functions define the behavior of a smart contract. They can be public, private, view (read-only), or payable (can receive Ether).</p>
 <pre><code>
 function getName() public pure returns (string memory) {
