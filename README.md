@@ -151,6 +151,7 @@ https://docs.google.com/presentation/d/1UkdDAZYwNiS0rGIkdulOonFH6FDs4z9smaaj5iDi
 - Functions: Visibility (`public`, `private`, `internal`, `external`), and modifiers.
 
 <h2>1. Basic Structure of a Solidity Contract</h2>
+<p>A Solidity smart contract starts with the <code>pragma</code> directive, followed by the contract definition. Solidity contracts contain functions, variables, and logic that define how they interact on the blockchain.</p>
 <pre><code>
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
@@ -172,7 +173,9 @@ contract MyFirstContract {
 </ul>
 
 <h2>3. Variables in Solidity</h2>
+
 <h3>State Variables</h3>
+<p>State variables are permanently stored on the blockchain. They retain their values even after the contract execution ends.</p>
 <pre><code>
 contract Example {
     uint256 public storedNumber;
@@ -184,6 +187,7 @@ contract Example {
 </code></pre>
 
 <h3>Local Variables</h3>
+<p>Local variables exist only within a function's execution scope. They do not persist on the blockchain.</p>
 <pre><code>
 function getNumber() public pure returns (uint256) {
     uint256 localNumber = 10;
@@ -192,12 +196,14 @@ function getNumber() public pure returns (uint256) {
 </code></pre>
 
 <h3>Global Variables</h3>
+<p>Global variables provide blockchain-related information such as the sender's address, block number, or timestamp.</p>
 <pre><code>
 uint256 public blockNumber = block.number;
 address public sender = msg.sender;
 </code></pre>
 
 <h2>4. Functions in Solidity</h2>
+<p>Functions define the behavior of a smart contract. They can be public, private, view (read-only), or payable (can receive Ether).</p>
 <pre><code>
 function getName() public pure returns (string memory) {
     return "Solidity Mondays";
@@ -205,7 +211,9 @@ function getName() public pure returns (string memory) {
 </code></pre>
 
 <h2>5. Control Structures (If-Else, Loops)</h2>
+
 <h3>If-Else Statement</h3>
+<p>The if-else statement allows conditional execution of code based on specific conditions.</p>
 <pre><code>
 function checkEven(uint256 num) public pure returns (string memory) {
     if (num % 2 == 0) {
@@ -217,7 +225,9 @@ function checkEven(uint256 num) public pure returns (string memory) {
 </code></pre>
 
 <h2>6. Mappings and Structs</h2>
+
 <h3>Mappings</h3>
+<p>Mappings store key-value pairs, where keys are unique, and values can be of any type.</p>
 <pre><code>
 mapping(address => uint256) public balances;
 
@@ -227,6 +237,7 @@ function updateBalance(address _user, uint256 _amount) public {
 </code></pre>
 
 <h3>Structs</h3>
+<p>Structs are used to define custom data structures, grouping multiple data fields.</p>
 <pre><code>
 struct Student {
     string name;
@@ -241,6 +252,7 @@ function setStudent(string memory _name, uint256 _age) public {
 </code></pre>
 
 <h2>7. Events and Logging</h2>
+<p>Events in Solidity allow logging data on the blockchain. They are mainly used to track actions like transactions or contract updates.</p>
 <pre><code>
 event UserRegistered(address indexed user, uint256 timestamp);
 
@@ -250,6 +262,7 @@ function registerUser() public {
 </code></pre>
 
 <h2>8. Modifiers</h2>
+<p>Modifiers define rules that must be met before executing a function. They help enforce access control and conditions.</p>
 <pre><code>
 modifier onlyOwner() {
     require(msg.sender == owner, "Not the owner");
@@ -262,6 +275,7 @@ function restrictedFunction() public onlyOwner {
 </code></pre>
 
 <h2>9. Payable Functions (Handling Ether)</h2>
+<p>Payable functions allow contracts to receive and send Ether. The <code>msg.value</code> property holds the amount of Ether sent.</p>
 <pre><code>
 function deposit() public payable {
     require(msg.value > 0, "Must send some Ether");
@@ -276,6 +290,7 @@ function getBalance() public view returns (uint256) {
 <p>Deploying a Solidity contract requires a development environment like <strong>Remix</strong>, <strong>Hardhat</strong>, or <strong>Foundry</strong>.</p>
 
 <h3>Ethers.js Deployment Script</h3>
+<p>The following script shows how to deploy a contract using Ethers.js:</p>
 <pre><code>
 const { ethers } = require("ethers");
 
