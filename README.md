@@ -189,7 +189,6 @@ function getName() public pure returns (string memory) {
 <pre><code>
 contract Example {
     uint256 public storedNumber; // A state variable stored on the blockchain
-
     function setNumber(uint256 _num) public {
         storedNumber = _num; // Updates the state variable
     }
