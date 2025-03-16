@@ -179,7 +179,6 @@ contract MyFirstContract {
 <pre><code>
 contract Example {
     uint256 public storedNumber;
-
     function setNumber(uint256 _num) public {
         storedNumber = _num;
     }
