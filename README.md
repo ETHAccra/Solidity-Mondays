@@ -150,6 +150,153 @@ https://docs.google.com/presentation/d/1UkdDAZYwNiS0rGIkdulOonFH6FDs4z9smaaj5iDi
 - Variables: State variables, local variables, and constants.
 - Functions: Visibility (`public`, `private`, `internal`, `external`), and modifiers.
 
+<h2>1. Basic Structure of a Solidity Contract</h2>
+<pre><code>
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+contract MyFirstContract {
+    // Contract content goes here
+}
+</code></pre>
+
+<h2>2. Data Types in Solidity</h2>
+<h3>Value Types</h3>
+<ul>
+    <li><strong>Boolean (<code>bool</code>)</strong>: Stores <code>true</code> or <code>false</code>.</li>
+    <li><strong>Unsigned Integer (<code>uint</code>)</strong>: Represents non-negative integers.</li>
+    <li><strong>Signed Integer (<code>int</code>)</strong>: Stores positive and negative integers.</li>
+    <li><strong>Address (<code>address</code>)</strong>: Stores Ethereum addresses.</li>
+    <li><strong>Bytes (<code>bytes1</code> to <code>bytes32</code>)</strong>: Used for cryptographic operations.</li>
+    <li><strong>String (<code>string</code>)</strong>: Used for storing text.</li>
+</ul>
+
+<h2>3. Variables in Solidity</h2>
+<h3>State Variables</h3>
+<pre><code>
+contract Example {
+    uint256 public storedNumber;
+
+    function setNumber(uint256 _num) public {
+        storedNumber = _num;
+    }
+}
+</code></pre>
+
+<h3>Local Variables</h3>
+<pre><code>
+function getNumber() public pure returns (uint256) {
+    uint256 localNumber = 10;
+    return localNumber;
+}
+</code></pre>
+
+<h3>Global Variables</h3>
+<pre><code>
+uint256 public blockNumber = block.number;
+address public sender = msg.sender;
+</code></pre>
+
+<h2>4. Functions in Solidity</h2>
+<pre><code>
+function getName() public pure returns (string memory) {
+    return "Solidity Mondays";
+}
+</code></pre>
+
+<h2>5. Control Structures (If-Else, Loops)</h2>
+<h3>If-Else Statement</h3>
+<pre><code>
+function checkEven(uint256 num) public pure returns (string memory) {
+    if (num % 2 == 0) {
+        return "Even";
+    } else {
+        return "Odd";
+    }
+}
+</code></pre>
+
+<h2>6. Mappings and Structs</h2>
+<h3>Mappings</h3>
+<pre><code>
+mapping(address => uint256) public balances;
+
+function updateBalance(address _user, uint256 _amount) public {
+    balances[_user] = _amount;
+}
+</code></pre>
+
+<h3>Structs</h3>
+<pre><code>
+struct Student {
+    string name;
+    uint256 age;
+}
+
+Student public student;
+
+function setStudent(string memory _name, uint256 _age) public {
+    student = Student(_name, _age);
+}
+</code></pre>
+
+<h2>7. Events and Logging</h2>
+<pre><code>
+event UserRegistered(address indexed user, uint256 timestamp);
+
+function registerUser() public {
+    emit UserRegistered(msg.sender, block.timestamp);
+}
+</code></pre>
+
+<h2>8. Modifiers</h2>
+<pre><code>
+modifier onlyOwner() {
+    require(msg.sender == owner, "Not the owner");
+    _;
+}
+
+function restrictedFunction() public onlyOwner {
+    // Function logic
+}
+</code></pre>
+
+<h2>9. Payable Functions (Handling Ether)</h2>
+<pre><code>
+function deposit() public payable {
+    require(msg.value > 0, "Must send some Ether");
+}
+
+function getBalance() public view returns (uint256) {
+    return address(this).balance;
+}
+</code></pre>
+
+<h2>10. Smart Contract Deployment</h2>
+<p>Deploying a Solidity contract requires a development environment like <strong>Remix</strong>, <strong>Hardhat</strong>, or <strong>Foundry</strong>.</p>
+
+<h3>Ethers.js Deployment Script</h3>
+<pre><code>
+const { ethers } = require("ethers");
+
+async function deploy() {
+    const provider = new ethers.JsonRpcProvider("https://rpc-url");
+    const wallet = new ethers.Wallet("YOUR_PRIVATE_KEY", provider);
+    const factory = new ethers.ContractFactory(ABI, BYTECODE, wallet);
+    
+    const contract = await factory.deploy();
+    await contract.deployed();
+
+    console.log("Contract deployed at:", contract.address);
+}
+
+deploy();
+</code></pre>
+
+<h2>Conclusion</h2>
+<p>This Solidity fundamentals guide covers essential concepts such as data types, functions, mappings, control structures, events, and smart contract deployment. Mastering these concepts is crucial for building robust blockchain applications.</p>
+<p>Stay tuned for <strong>next week's Solidity Mondays</strong> where we’ll dive into <strong>Solidity Security Best Practices and Gas Optimization Techniques</strong>! 🚀</p>
+
 ### Materials:
 - **Book**: *Mastering Ethereum* (Chapter 7: Smart Contracts and Solidity).
 - **Practice**: Write a simple "Hello World" contract in Remix IDE.
