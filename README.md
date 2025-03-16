@@ -138,10 +138,10 @@ Welcome to **Solidity Mondays**! This is a structured weekly plan to help you le
 ---
 
 <details>
-<summary><strong>Week 2: Solidity Fundamentals</strong></summary>
-
+<summary><strong>Week 2: Solidity Fundamentals</strong></summary><br>
 
 REMIX SLIDES
+
 https://docs.google.com/presentation/d/1UkdDAZYwNiS0rGIkdulOonFH6FDs4z9smaaj5iDim1s/edit#slide=id.g12e1023695a_0_0
 
 ### Topics Covered:
