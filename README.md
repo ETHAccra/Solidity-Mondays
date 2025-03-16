@@ -140,6 +140,10 @@ Welcome to **Solidity Mondays**! This is a structured weekly plan to help you le
 <details>
 <summary><strong>Week 2: Solidity Fundamentals</strong></summary>
 
+
+REMIX SLIDES
+https://docs.google.com/presentation/d/1UkdDAZYwNiS0rGIkdulOonFH6FDs4z9smaaj5iDim1s/edit#slide=id.g12e1023695a_0_0
+
 ### Topics Covered:
 - Basic syntax and structure of a Solidity contract.
 - Data types: `uint`, `address`, `bool`, `string`, etc.
