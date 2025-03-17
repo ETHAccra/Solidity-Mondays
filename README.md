@@ -140,6 +140,11 @@ Welcome to **Solidity Mondays**! This is a structured weekly plan to help you le
 <details>
 <summary><strong>Week 2: Solidity Fundamentals</strong></summary><br>
 
+WEEK 2
+
+https://docs.google.com/presentation/d/1etS78gVlWwDJBgpt2-aomsntDFG8mUpQ/edit?usp=sharing&ouid=109207709370381780005&rtpof=true&sd=true
+
+
 REMIX PRESENTATION
 
 https://docs.google.com/presentation/d/1UkdDAZYwNiS0rGIkdulOonFH6FDs4z9smaaj5iDim1s/edit#slide=id.g12e1023695a_0_0
@@ -147,6 +152,8 @@ https://docs.google.com/presentation/d/1UkdDAZYwNiS0rGIkdulOonFH6FDs4z9smaaj5iDi
 SEPOLIA FAUCET
 
 https://cloud.google.com/application/web3/faucet/ethereum/sepolia
+
+
 
 ### Topics Covered:
 - Basic syntax and structure of a Solidity contract.
