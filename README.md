@@ -140,7 +140,7 @@ Welcome to **Solidity Mondays**! This is a structured weekly plan to help you le
 <details>
 <summary><strong>Week 2: Solidity Fundamentals</strong></summary><br>
 
-WEEK 2
+WEEK 2 PRESENTATION
 
 https://docs.google.com/presentation/d/1etS78gVlWwDJBgpt2-aomsntDFG8mUpQ/edit?usp=sharing&ouid=109207709370381780005&rtpof=true&sd=true
 
