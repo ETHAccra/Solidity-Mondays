@@ -512,13 +512,8 @@ contract OnlineShop {
 <h4>🎯 Practice Task</h4>
 <p>Try adding a feature where users can leave reviews for products.</p>
 
-
-
-
-
 ### Materials:
 - **Book**: *Mastering Ethereum* (Chapter 7: Smart Contracts and Solidity).
-- **Practice**: Create a contract that stores and retrieves user data using structs and mappings.
 
 </details>
 
