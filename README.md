@@ -322,6 +322,206 @@ function getBalance() public view returns (uint256) {
 - Mappings: Key-value pairs.
 - Enums: User-defined types for constants.
 
+<h1>🔹 Solidity Monday: Understanding Solidity Data Structures</h1>
+<p>In this session, we explore <strong>Arrays, Structs, Mappings, and Enums</strong>, which are essential for smart contract development.</p>
+
+<h2>📌 Topics Covered</h2>
+<ul>
+    <li>✅ <strong>Arrays</strong>: Storing multiple values.</li>
+    <li>✅ <strong>Structs</strong>: Grouping multiple pieces of data.</li>
+    <li>✅ <strong>Mappings</strong>: Storing key-value pairs.</li>
+    <li>✅ <strong>Enums</strong>: Defining fixed choices.</li>
+</ul>
+
+<h2>1️⃣ Arrays: Storing Multiple Values</h2>
+<p>An array is a list that holds multiple values of the same type.</p>
+
+<h3>📌 Two Types of Arrays</h3>
+<ul>
+    <li>🔹 <strong>Fixed-size array</strong> – has a set number of items.</li>
+    <li>🔹 <strong>Dynamic array</strong> – can grow or shrink.</li>
+</ul>
+
+<h3>Example 1: Fixed-size Array</h3>
+<pre><code>
+// A fixed-size array that holds 3 numbers
+uint[3] numbers = [10, 20, 30];
+</code></pre>
+
+<h3>Example 2: Dynamic Array</h3>
+<pre><code>
+uint[] numbers; // Can grow or shrink
+
+function addNumber(uint _num) public {
+    numbers.push(_num); // Adds a number to the array
+}
+
+function removeLast() public {
+    numbers.pop(); // Removes the last number
+}
+</code></pre>
+
+<h3>Looping through an Array</h3>
+<pre><code>
+function getAllNumbers() public view returns (uint[] memory) {
+    return numbers;
+}
+</code></pre>
+
+<h2>2️⃣ Structs: Grouping Multiple Pieces of Data</h2>
+<p>A struct allows you to combine multiple data types into a single entity.</p>
+
+<h3>Example: Defining a Struct</h3>
+<pre><code>
+struct Student {
+    string name;
+    uint age;
+    bool enrolled;
+}
+</code></pre>
+
+<h3>Example: Using a Struct</h3>
+<pre><code>
+Student public student;
+
+function setStudent(string memory _name, uint _age, bool _enrolled) public {
+    student = Student(_name, _age, _enrolled);
+}
+</code></pre>
+
+<h3>Structs Inside Arrays</h3>
+<pre><code>
+Student[] public students;
+
+function addStudent(string memory _name, uint _age, bool _enrolled) public {
+    students.push(Student(_name, _age, _enrolled));
+}
+</code></pre>
+
+<h2>3️⃣ Mappings: Storing Key-Value Pairs</h2>
+<p>A mapping is a key-value store, like a dictionary.</p>
+
+<h3>Example: Storing Account Balances</h3>
+<pre><code>
+mapping(address => uint) public balances;
+
+function deposit(uint _amount) public {
+    balances[msg.sender] += _amount;
+}
+
+function checkBalance() public view returns (uint) {
+    return balances[msg.sender];
+}
+</code></pre>
+
+<p>✅ <strong>Key</strong>: <code>msg.sender</code> (user’s wallet address) <br>
+✅ <strong>Value</strong>: The amount of tokens the user has</p>
+
+<h3>Nested Mappings</h3>
+<p>You can have mappings inside mappings! For example, each user can have multiple token balances.</p>
+
+<pre><code>
+mapping(address => mapping(string => uint)) public tokenBalances;
+
+function setTokenBalance(string memory _token, uint _amount) public {
+    tokenBalances[msg.sender][_token] = _amount;
+}
+
+function getTokenBalance(string memory _token) public view returns (uint) {
+    return tokenBalances[msg.sender][_token];
+}
+</code></pre>
+
+<h2>4️⃣ Enums: Creating Custom Options</h2>
+<p>An enum (short for “enumeration”) is used when you have a fixed set of choices.</p>
+
+<h3>Example: Order Status</h3>
+<pre><code>
+enum OrderStatus { Pending, Shipped, Delivered }
+OrderStatus public status;
+</code></pre>
+
+<h3>Updating the Enum</h3>
+<pre><code>
+function setStatus(uint _status) public {
+    status = OrderStatus(_status); // 0 = Pending, 1 = Shipped, 2 = Delivered
+}
+</code></pre>
+
+<h3>Checking the Status</h3>
+<pre><code>
+function isDelivered() public view returns (bool) {
+    return status == OrderStatus.Delivered;
+}
+</code></pre>
+
+<h2>🚀 Online Shop Smart Contract</h2>
+<p>This smart contract simulates an online store using all the data structures.</p>
+
+<pre><code>
+pragma solidity ^0.8.0;
+
+contract OnlineShop {
+    enum OrderStatus { Pending, Shipped, Delivered }
+
+    struct Product {
+        string name;
+        uint price;
+    }
+
+    struct Order {
+        address buyer;
+        uint productId;
+        OrderStatus status;
+    }
+
+    Product[] public products;
+    mapping(uint => Order) public orders;
+    uint public orderCount;
+
+    function addProduct(string memory _name, uint _price) public {
+        products.push(Product(_name, _price));
+    }
+
+    function placeOrder(uint _productId) public {
+        require(_productId < products.length, "Invalid product ID");
+        orders[orderCount] = Order(msg.sender, _productId, OrderStatus.Pending);
+        orderCount++;
+    }
+
+    function updateOrderStatus(uint _orderId, OrderStatus _status) public {
+        require(_orderId < orderCount, "Invalid order ID");
+        orders[_orderId].status = _status;
+    }
+
+    function getOrder(uint _orderId) public view returns (address, string memory, uint, OrderStatus) {
+        require(_orderId < orderCount, "Invalid order ID");
+        Order storage order = orders[_orderId];
+        Product storage product = products[order.productId];
+        return (order.buyer, product.name, product.price, order.status);
+    }
+}
+</code></pre>
+
+<h2>🔹 Summary</h2>
+<ul>
+    <li>✅ <strong>Arrays</strong> – Store multiple values in a list.</li>
+    <li>✅ <strong>Structs</strong> – Group different types of data together.</li>
+    <li>✅ <strong>Mappings</strong> – Store key-value pairs for quick lookups.</li>
+    <li>✅ <strong>Enums</strong> – Define fixed choices for specific conditions.</li>
+</ul>
+
+<h2>🎯 Practice Task</h2>
+<p>Try adding a feature where users can leave reviews for products.</p>
+
+<h2>🚀 Deployment</h2>
+<p>These concepts can be used in <strong>Ethereum, Base, Celo, and Sepolia testnets</strong>.</p>
+
+<h2>📌 License</h2>
+<p>MIT License - Free to use and modify.</p>
+
+
+
 ### Materials:
 - **Book**: *Mastering Ethereum* (Chapter 7: Smart Contracts and Solidity).
 - **Practice**: Create a contract that stores and retrieves user data using structs and mappings.
