@@ -322,10 +322,8 @@ function getBalance() public view returns (uint256) {
 - Mappings: Key-value pairs.
 - Enums: User-defined types for constants.
 
-<h1>🔹 Solidity Monday: Understanding Solidity Data Structures</h1>
-<p>In this session, we explore <strong>Arrays, Structs, Mappings, and Enums</strong>, which are essential for smart contract development.</p>
+<p>In this session, we explore <strong>Arrays, Structs, Mappings, and Enums</strong> in depth, which are essential for smart contract development.</p>
 
-<h2>📌 Topics Covered</h2>
 <ul>
     <li>✅ <strong>Arrays</strong>: Storing multiple values.</li>
     <li>✅ <strong>Structs</strong>: Grouping multiple pieces of data.</li>
@@ -336,19 +334,19 @@ function getBalance() public view returns (uint256) {
 <h2>1️⃣ Arrays: Storing Multiple Values</h2>
 <p>An array is a list that holds multiple values of the same type.</p>
 
-<h3>📌 Two Types of Arrays</h3>
+<h5>📌 Two Types of Arrays</h5>
 <ul>
     <li>🔹 <strong>Fixed-size array</strong> – has a set number of items.</li>
     <li>🔹 <strong>Dynamic array</strong> – can grow or shrink.</li>
 </ul>
 
-<h3>Example 1: Fixed-size Array</h3>
+<h5>Example 1: Fixed-size Array</h5>
 <pre><code>
 // A fixed-size array that holds 3 numbers
 uint[3] numbers = [10, 20, 30];
 </code></pre>
 
-<h3>Example 2: Dynamic Array</h3>
+<h5>Example 2: Dynamic Array</h5>
 <pre><code>
 uint[] numbers; // Can grow or shrink
 
@@ -361,14 +359,14 @@ function removeLast() public {
 }
 </code></pre>
 
-<h3>Looping through an Array</h3>
+<h5>Looping through an Array</h5>
 <pre><code>
 function getAllNumbers() public view returns (uint[] memory) {
     return numbers;
 }
 </code></pre>
 
-<h2>2️⃣ Structs: Grouping Multiple Pieces of Data</h2>
+<h5>2️⃣ Structs: Grouping Multiple Pieces of Data</h5>
 <p>A struct allows you to combine multiple data types into a single entity.</p>
 
 <h3>Example: Defining a Struct</h3>
@@ -380,7 +378,7 @@ struct Student {
 }
 </code></pre>
 
-<h3>Example: Using a Struct</h3>
+<h5>Example: Using a Struct</h5>
 <pre><code>
 Student public student;
 
@@ -389,7 +387,7 @@ function setStudent(string memory _name, uint _age, bool _enrolled) public {
 }
 </code></pre>
 
-<h3>Structs Inside Arrays</h3>
+<h5>Structs Inside Arrays</h5>
 <pre><code>
 Student[] public students;
 
@@ -401,7 +399,7 @@ function addStudent(string memory _name, uint _age, bool _enrolled) public {
 <h2>3️⃣ Mappings: Storing Key-Value Pairs</h2>
 <p>A mapping is a key-value store, like a dictionary.</p>
 
-<h3>Example: Storing Account Balances</h3>
+<h5>Example: Storing Account Balances</h5>
 <pre><code>
 mapping(address => uint) public balances;
 
@@ -417,7 +415,7 @@ function checkBalance() public view returns (uint) {
 <p>✅ <strong>Key</strong>: <code>msg.sender</code> (user’s wallet address) <br>
 ✅ <strong>Value</strong>: The amount of tokens the user has</p>
 
-<h3>Nested Mappings</h3>
+<h5>Nested Mappings</h5>
 <p>You can have mappings inside mappings! For example, each user can have multiple token balances.</p>
 
 <pre><code>
@@ -435,27 +433,27 @@ function getTokenBalance(string memory _token) public view returns (uint) {
 <h2>4️⃣ Enums: Creating Custom Options</h2>
 <p>An enum (short for “enumeration”) is used when you have a fixed set of choices.</p>
 
-<h3>Example: Order Status</h3>
+<h5>Example: Order Status</h5>
 <pre><code>
 enum OrderStatus { Pending, Shipped, Delivered }
 OrderStatus public status;
 </code></pre>
 
-<h3>Updating the Enum</h3>
+<h5>Updating the Enum</h5>
 <pre><code>
 function setStatus(uint _status) public {
     status = OrderStatus(_status); // 0 = Pending, 1 = Shipped, 2 = Delivered
 }
 </code></pre>
 
-<h3>Checking the Status</h3>
+<h5>Checking the Status</h5>
 <pre><code>
 function isDelivered() public view returns (bool) {
     return status == OrderStatus.Delivered;
 }
 </code></pre>
 
-<h2>🚀 Online Shop Smart Contract</h2>
+<h2> Online Shop Smart Contract</h2>
 <p>This smart contract simulates an online store using all the data structures.</p>
 
 <pre><code>
@@ -503,7 +501,7 @@ contract OnlineShop {
 }
 </code></pre>
 
-<h2>🔹 Summary</h2>
+<h4>🔹 Summary</h4>
 <ul>
     <li>✅ <strong>Arrays</strong> – Store multiple values in a list.</li>
     <li>✅ <strong>Structs</strong> – Group different types of data together.</li>
@@ -511,14 +509,10 @@ contract OnlineShop {
     <li>✅ <strong>Enums</strong> – Define fixed choices for specific conditions.</li>
 </ul>
 
-<h2>🎯 Practice Task</h2>
+<h4>🎯 Practice Task</h4>
 <p>Try adding a feature where users can leave reviews for products.</p>
 
-<h2>🚀 Deployment</h2>
-<p>These concepts can be used in <strong>Ethereum, Base, Celo, and Sepolia testnets</strong>.</p>
 
-<h2>📌 License</h2>
-<p>MIT License - Free to use and modify.</p>
 
 
 
