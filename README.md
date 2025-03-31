@@ -516,7 +516,7 @@ contract OnlineShop {
     <li>✅ <strong>Enums</strong> – Define fixed choices for specific conditions.</li>
 </ul>
 
-<h1>Compile Solidity Code Using Hardhat</h1>
+<h2>Compile Solidity Code Using Hardhat</h2>
 
 <h2>1. Install Hardhat</h2>
 <p>Run the following command in your project directory:</p>
