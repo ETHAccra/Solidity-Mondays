@@ -516,6 +516,37 @@ contract OnlineShop {
     <li>✅ <strong>Enums</strong> – Define fixed choices for specific conditions.</li>
 </ul>
 
+<h1>Compile Solidity Code Using Hardhat</h1>
+
+<h2>1. Install Hardhat</h2>
+<p>Run the following command in your project directory:</p>
+<pre><code>npm install --save-dev hardhat</code></pre>
+
+<h2>2. Create a Hardhat Project</h2>
+<p>If you haven't initialized Hardhat, run:</p>
+<pre><code>npx hardhat</code></pre>
+<p>Select <strong>"Create a basic sample project"</strong> and follow the prompts.</p>
+
+<h2>3. Check Hardhat Configuration</h2>
+<p>Ensure your <code>hardhat.config.js</code> or <code>hardhat.config.ts</code> file has the correct Solidity compiler version:</p>
+<pre><code>module.exports = {
+  solidity: "0.8.20",
+};</code></pre>
+
+<h2>4. Compile Your Solidity Code</h2>
+<p>Run:</p>
+<pre><code>npx hardhat compile</code></pre>
+<p>This will compile all Solidity files in the <code>contracts/</code> directory and store the artifacts in <code>artifacts/</code> and <code>cache/</code>.</p>
+
+<h2>5. (Optional) Fix Errors and Warnings</h2>
+<p>If you encounter errors, review them in the terminal and adjust your Solidity code or compiler version accordingly.</p>
+
+<h2>6. Verify Compilation Output</h2>
+<p>Check the <code>artifacts/contracts/</code> directory to ensure the <code>.json</code> files (ABI & Bytecode) are generated.</p>
+
+<p>Now your Solidity code is compiled successfully using Hardhat! 🚀</p>
+
+
 <h4>🎯 Practice Task</h4>
 <p>Try adding a feature where users can leave reviews for products.</p>
 
