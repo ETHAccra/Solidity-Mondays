@@ -462,6 +462,8 @@ function isDelivered() public view returns (bool) {
 <p>This smart contract simulates an online store using all the data structures.</p>
 
 <pre><code>
+    
+//SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract OnlineShop {
