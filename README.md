@@ -366,7 +366,7 @@ function getAllNumbers() public view returns (uint[] memory) {
 }
 </code></pre>
 
-<h5>2️⃣ Structs: Grouping Multiple Pieces of Data</h5>
+<h2>2️⃣ Structs: Grouping Multiple Pieces of Data</h2>
 <p>A struct allows you to combine multiple data types into a single entity.</p>
 
 <h3>Example: Defining a Struct</h3>
