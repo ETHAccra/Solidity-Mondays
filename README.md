@@ -565,7 +565,7 @@ contract OnlineShop {
 - Loops: `for`, `while`.
 - Error handling: `require`, `assert`, `revert`.
 
-<h1>🧠 Week 4: Control Structures & Error Handling in Solidity</h1>
+<h2>🧠 Week 4: Control Structures & Error Handling in Solidity</h2>
 
 <p><strong>Welcome to Week 4 of Solidity Mondays!</strong> This session focuses on control flow and defensive programming in Solidity. We'll explore conditional logic, loops, and error handling with examples from our <strong>OnlineShop</strong> smart contract.</p>
 
@@ -575,6 +575,7 @@ contract OnlineShop {
 <p>Solidity allows <code>if</code>, <code>else if</code>, and <code>else</code> to control decision-making in your contracts.</p>
 
 <h3>🔹 Marketplace Example: Buyer Tiers Based on Spending</h3>
+
 <pre><code>function getBuyerTier(uint totalSpent) public pure returns (string memory) {
     if (totalSpent >= 1000 ether) {
         return "Platinum";
@@ -593,6 +594,7 @@ contract OnlineShop {
 <p>Loops are useful for iterating through arrays or performing repeated actions. Use them carefully to avoid high gas consumption!</p>
 
 <h3>🔹 for Loop: Total Product Price</h3>
+
 <pre><code>function totalProductPrice() public view returns (uint total) {
     for (uint i = 0; i &lt; products.length; i++) {
         total += products[i].price;
@@ -600,6 +602,7 @@ contract OnlineShop {
 }</code></pre>
 
 <h3>🔹 while Loop: Count Pending Orders</h3>
+
 <pre><code>function countPendingOrders() public view returns (uint count) {
     uint i = 0;
     while (i &lt; orderCount) {
@@ -618,6 +621,7 @@ contract OnlineShop {
 <p>Solidity offers three main tools for handling errors: <code>require</code>, <code>assert</code>, and <code>revert</code>.</p>
 
 <h3>🔹 require(): Check External Conditions</h3>
+
 <pre><code>function placeOrder(uint _productId) public {
     require(_productId &lt; products.length, "Invalid product ID");
     orders[orderCount] = Order(msg.sender, _productId, OrderStatus.Pending);
@@ -625,11 +629,13 @@ contract OnlineShop {
 }</code></pre>
 
 <h3>🔹 assert(): Check Invariant/Internal Logic</h3>
+
 <pre><code>function checkOrderExists(uint _orderId) public view {
     assert(_orderId &lt;= orderCount); // Should always be true if order creation works
 }</code></pre>
 
 <h3>🔹 revert(): Custom Error Trigger</h3>
+
 <pre><code>function cancelOrder(uint _orderId) public {
     if (_orderId &gt;= orderCount) {
         revert("Order does not exist");
@@ -745,9 +751,9 @@ contract OnlineShop {
 
 </details>
 
----
 
 <details>
+
 <summary><strong>Week 5: Function Modifiers and Events</strong></summary>
 
 ### Topics Covered:
