@@ -859,10 +859,6 @@ contract OnlineShop {
 - **Online Courses**:
   - [CryptoZombies](https://cryptozombies.io/).
   - [Ethereum.org Learn Section](https://ethereum.org/en/learn/).
-- **Communities**:
-  - Ethereum Stack Exchange.
-  - Reddit: r/ethdev.
-  - Discord: Ethereum Developer Community.
 
 ---
 
