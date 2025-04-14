@@ -745,10 +745,6 @@ contract OnlineShop {
             revert
 
 
-### Materials:
-- **Online Resources**: [Solidity by Example](https://solidity-by-example.org/).
-- **Practice**: Write a contract that implements a basic voting system with error handling.
-
 </details>
 
 ---
