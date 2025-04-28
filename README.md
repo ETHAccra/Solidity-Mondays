@@ -758,9 +758,247 @@ contract OnlineShop {
 - Custom modifiers.
 - Events: Logging and listening to events.
 
-### Materials:
-- **Book**: *Mastering Ethereum* (Chapter 7: Smart Contracts and Solidity).
-- **Practice**: Add events to your voting contract to log votes.
+<h1>Solidity Mondays: Function Modifiers, Custom Modifiers, and Events</h1>
+
+<p>Welcome to today's Solidity Mondays!<br>
+Today, we'll dive deep into <strong>function modifiers</strong>, <strong>custom modifiers</strong>, and <strong>events</strong> — key concepts for writing clean, secure smart contracts.</p>
+
+<hr>
+
+<h2>📚 1. Function Modifiers: <code>view</code>, <code>pure</code>, <code>payable</code></h2>
+
+<p>In Solidity, <strong>modifiers</strong> tell us <strong>how a function interacts</strong> with the blockchain.</p>
+
+<h3>🔵 <code>view</code></h3>
+<ul>
+  <li>A <code>view</code> function promises <strong>NOT to modify</strong> the blockchain state.</li>
+  <li>It can <strong>read</strong> state variables but <strong>cannot change</strong> them.</li>
+  <li>Useful for fetching data <strong>without paying gas</strong> (if called externally).</li>
+</ul>
+
+<pre><code>uint public balance;
+
+function getBalance() public view returns (uint) {
+    return balance;
+}
+</code></pre>
+
+<h3>🔵 <code>pure</code></h3>
+<ul>
+  <li>A <code>pure</code> function <strong>neither reads nor modifies</strong> the blockchain state.</li>
+  <li>It <strong>only</strong> works with its own parameters or internal variables.</li>
+  <li>Perfect for mathematical calculations.</li>
+</ul>
+
+<pre><code>function add(uint a, uint b) public pure returns (uint) {
+    return a + b;
+}
+</code></pre>
+
+<h3>🔵 <code>payable</code></h3>
+<ul>
+  <li>A <code>payable</code> function <strong>can receive Ether</strong>.</li>
+  <li>Without it, sending ETH to a function will <strong>fail</strong>.</li>
+</ul>
+
+<pre><code>function deposit() public payable {
+    // Contract can now receive ETH
+}
+</code></pre>
+
+<h3>📋 Quick Summary Table</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Modifier</th>
+      <th>Reads State?</th>
+      <th>Modifies State?</th>
+      <th>Can Receive Ether?</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>view</code></td>
+      <td>✅</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>Read blockchain state</td>
+    </tr>
+    <tr>
+      <td><code>pure</code></td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>❌</td>
+      <td>Pure computation only</td>
+    </tr>
+    <tr>
+      <td><code>payable</code></td>
+      <td>✅ (optional)</td>
+      <td>✅ (optional)</td>
+      <td>✅</td>
+      <td>Accept ETH payments</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>📚 2. Custom Modifiers</h2>
+
+<p><strong>Custom modifiers</strong> are reusable rules you can apply to functions to <strong>enforce conditions</strong>.</p>
+
+<h3>✏️ How Modifiers Work:</h3>
+<ul>
+  <li>Define a <code>modifier</code> that <strong>runs some checks</strong>.</li>
+  <li>Use <code>_;</code> to represent <strong>where the original function should continue</strong> if checks pass.</li>
+</ul>
+
+<h3>🔵 Example: Only Owner Can Withdraw</h3>
+
+<pre><code>address public owner;
+
+modifier onlyOwner() {
+    require(msg.sender == owner, "Not the owner");
+    _;
+}
+
+function withdraw() public onlyOwner {
+    payable(msg.sender).transfer(address(this).balance);
+}
+</code></pre>
+
+<ul>
+  <li><code>require</code> checks that only the contract owner can call <code>withdraw</code>.</li>
+  <li><code>_;</code> tells Solidity <strong>where</strong> the <code>withdraw</code> function should continue after the check.</li>
+</ul>
+
+<h3>🔵 Modifiers Can Accept Arguments</h3>
+
+<pre><code>modifier costs(uint price) {
+    require(msg.value >= price, "Not enough Ether");
+    _;
+}
+
+function buy() public payable costs(1 ether) {
+    // User must send at least 1 ETH
+}
+</code></pre>
+
+<hr>
+
+<h2>📚 3. Events: Logging and Listening</h2>
+
+<p><strong>Events</strong> are like <strong>announcements</strong> that <strong>something important happened</strong> inside your contract.</p>
+<p>They are recorded on the blockchain logs and are used to <strong>communicate with frontends</strong>.</p>
+
+<h3>✏️ How Events Work</h3>
+
+<ol>
+  <li><strong>Define an Event</strong>:</li>
+</ol>
+
+<pre><code>event Deposited(address indexed user, uint amount);
+</code></pre>
+
+<ul>
+  <li><code>indexed</code> lets users <strong>filter by address</strong> when searching.</li>
+</ul>
+
+<ol start="2">
+  <li><strong>Emit the Event</strong> inside a function:</li>
+</ol>
+
+<pre><code>function deposit() public payable {
+    emit Deposited(msg.sender, msg.value);
+}
+</code></pre>
+
+<ol start="3">
+  <li><strong>Listen to Events</strong> from the frontend (example with ethers.js):</li>
+</ol>
+
+<pre><code>contract.on("Deposited", (user, amount) => {
+    console.log(`${user} deposited ${amount} wei!`);
+});
+</code></pre>
+
+<h3>🔵 Why Use Events?</h3>
+<ul>
+  <li>Track activities (e.g., deposits, withdrawals).</li>
+  <li>Update frontend UIs in real-time.</li>
+  <li>Reduce expensive state writes (cheaper than storage).</li>
+</ul>
+
+<hr>
+
+<h2>📦 Full Example: Putting It All Together</h2>
+
+<pre><code>// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract SimpleBank {
+    address public owner;
+    uint public totalBalance;
+
+    event Deposited(address indexed sender, uint amount);
+    event Withdrawn(address indexed receiver, uint amount);
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Caller is not the owner");
+        _;
+    }
+
+    function deposit() public payable {
+        totalBalance += msg.value;
+        emit Deposited(msg.sender, msg.value);
+    }
+
+    function withdraw(uint _amount) public onlyOwner {
+        require(totalBalance >= _amount, "Insufficient balance");
+        totalBalance -= _amount;
+        payable(msg.sender).transfer(_amount);
+        emit Withdrawn(msg.sender, _amount);
+    }
+
+    function getBalance() public view returns (uint) {
+        return totalBalance;
+    }
+
+    function calculateBonus(uint amount) public pure returns (uint) {
+        return amount * 10 / 100;
+    }
+}
+</code></pre>
+
+<hr>
+
+<h2>✨ Key Takeaways</h2>
+
+<ul>
+  <li><code>view</code>, <code>pure</code>, and <code>payable</code> <strong>describe function behaviors</strong>.</li>
+  <li><strong>Custom modifiers</strong> help you <strong>enforce rules and conditions</strong> efficiently.</li>
+  <li><strong>Events</strong> are <strong>critical</strong> for <strong>logging actions</strong> and <strong>communicating</strong> with dApps and UIs.</li>
+</ul>
+
+<p>Mastering these areas will level up your ability to write <strong>secure, scalable, and professional smart contracts</strong>!</p>
+
+<hr>
+
+<h2>🚀 Practice Challenge (Optional)</h2>
+
+<p><strong>Write a smart contract:</strong></p>
+<ul>
+  <li>Users can deposit ETH (<code>payable</code> function).</li>
+  <li>Only users who deposited can withdraw (custom modifier).</li>
+  <li>Emit events when deposits and withdrawals happen.</li>
+</ul>
+
 
 </details>
 
