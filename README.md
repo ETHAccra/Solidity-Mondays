@@ -1017,13 +1017,13 @@ contract SimpleBank {
 <h1>Solidity Mondays: Inheritance, Abstract Contracts, and Interfaces</h1>
 
 <p>Welcome back to Solidity Mondays!<br>
-In this session, we’re diving into three advanced but powerful topics: <strong>Inheritance</strong>, <strong>Abstract Contracts</strong>, and <strong>Interfaces</strong>.</p>
+In this session, we’re diving into three advanced but powerful topics: <strong>Inheritance</strong>, <strong>Abstract Contracts</strong>, and <strong>Interfaces</strong> — using real-world ERC-20 token contract examples.</p>
 
 <hr>
 
 <h2>📚 1. Inheritance in Solidity</h2>
 
-<p>Solidity supports <strong>inheritance</strong>, which allows you to create a base contract and extend it into child contracts. This helps with code reuse, structure, and modularity.</p>
+<p>Solidity supports <strong>inheritance</strong>, which allows you to create a base contract and extend it into child contracts. This helps with code reuse, structure, and modularity. ERC-20 tokens use inheritance to add features like minting and burning.</p>
 
 <h3>🔵 The <code>is</code> Keyword</h3>
 <ul>
@@ -1031,28 +1031,46 @@ In this session, we’re diving into three advanced but powerful topics: <strong
   <li>The child contract gains access to all public and internal variables/functions of the parent.</li>
 </ul>
 
-<h3>📘 Example: Parent and Child Contracts</h3>
+<h3>📘 Example: ERC-20 Token with Minting Inherited</h3>
 
-<pre><code>// Parent contract
-contract Animal {
-    string public species;
+<pre><code>// Base ERC20 contract
+contract ERC20 {
+    mapping(address => uint256) public balanceOf;
+    uint256 public totalSupply;
+    string public name;
+    string public symbol;
 
-    function setSpecies(string memory _species) public {
-        species = _species;
+    constructor(string memory _name, string memory _symbol) {
+        name = _name;
+        symbol = _symbol;
+    }
+
+    function transfer(address to, uint256 amount) public virtual returns (bool) {
+        require(balanceOf[msg.sender] >= amount, "Not enough balance");
+        balanceOf[msg.sender] -= amount;
+        balanceOf[to] += amount;
+        return true;
     }
 }
 
-// Child contract
-contract Dog is Animal {
-    function bark() public pure returns (string memory) {
-        return "Woof!";
+// Child token with minting
+contract MyToken is ERC20 {
+    address public owner;
+
+    constructor() ERC20("MyToken", "MTK") {
+        owner = msg.sender;
+    }
+
+    function mint(address to, uint256 amount) public {
+        require(msg.sender == owner, "Only owner can mint");
+        balanceOf[to] += amount;
+        totalSupply += amount;
     }
 }
 </code></pre>
 
 <ul>
-  <li><code>Dog</code> inherits the <code>setSpecies()</code> and <code>species</code> from <code>Animal</code>.</li>
-  <li>You can now call <code>setSpecies()</code> and <code>bark()</code> on a <code>Dog</code> contract.</li>
+  <li><code>MyToken</code> inherits from <code>ERC20</code> and adds custom minting logic.</li>
 </ul>
 
 <hr>
@@ -1060,26 +1078,42 @@ contract Dog is Animal {
 <h2>📚 2. Abstract Contracts</h2>
 
 <p>An <strong>abstract contract</strong> is a contract that <strong>cannot be deployed directly</strong>.</p>
-<p>It contains at least one <strong>unimplemented function</strong> — meaning the function has no body and must be overridden by a child contract.</p>
+<p>It contains at least one <strong>unimplemented function</strong>. ERC-20 token libraries often use abstract contracts to enforce structure.</p>
 
-<h3>📘 Example: Abstract Contract</h3>
+<h3>📘 Example: Abstract ERC20 Token</h3>
 
-<pre><code>abstract contract Shape {
-    function area() public view virtual returns (uint);
+<pre><code>abstract contract AbstractERC20 {
+    mapping(address => uint256) public balanceOf;
+    uint256 public totalSupply;
+
+    function transfer(address to, uint256 amount) public virtual returns (bool);
+    function decimals() public view virtual returns (uint8);
 }
 
-contract Square is Shape {
-    uint public length = 5;
+contract RealERC20 is AbstractERC20 {
+    string public name = "RealToken";
+    string public symbol = "RTL";
 
-    function area() public view override returns (uint) {
-        return length * length;
+    constructor() {
+        balanceOf[msg.sender] = 1000;
+        totalSupply = 1000;
+    }
+
+    function transfer(address to, uint256 amount) public override returns (bool) {
+        require(balanceOf[msg.sender] >= amount, "Insufficient balance");
+        balanceOf[msg.sender] -= amount;
+        balanceOf[to] += amount;
+        return true;
+    }
+
+    function decimals() public pure override returns (uint8) {
+        return 18;
     }
 }
 </code></pre>
 
 <ul>
-  <li><code>Shape</code> defines the abstract function <code>area()</code>.</li>
-  <li><code>Square</code> implements the missing function and becomes deployable.</li>
+  <li><code>AbstractERC20</code> defines structure, while <code>RealERC20</code> provides implementation.</li>
 </ul>
 
 <hr>
@@ -1087,7 +1121,7 @@ contract Square is Shape {
 <h2>📚 3. Interfaces in Solidity</h2>
 
 <p><strong>Interfaces</strong> are like contracts but can only declare functions — they cannot contain any implementation or state.</p>
-<p>They are useful for defining how contracts should behave without dictating the internal logic.</p>
+<p>They are widely used to define standards like ERC-20 so that wallets, DEXs, and other smart contracts can interact with tokens seamlessly.</p>
 
 <h3>🧩 Rules for Interfaces:</h3>
 <ul>
@@ -1095,60 +1129,81 @@ contract Square is Shape {
   <li>No constructor, state variables, or function bodies.</li>
 </ul>
 
-<h3>📘 Example: Interface Definition & Implementation</h3>
+<h3>📘 Example: ERC-20 Interface Implementation</h3>
 
 <pre><code>// Interface
-interface IGreeter {
-    function greet() external view returns (string memory);
+interface IERC20 {
+    function totalSupply() external view returns (uint256);
+    function balanceOf(address account) external view returns (uint256);
+    function transfer(address to, uint256 amount) external returns (bool);
 }
 
 // Implementing Contract
-contract Greeter is IGreeter {
-    function greet() external pure override returns (string memory) {
-        return "Hello, Interface!";
+contract MiniToken is IERC20 {
+    mapping(address => uint256) private _balances;
+    uint256 private _supply;
+
+    constructor() {
+        _supply = 1000;
+        _balances[msg.sender] = _supply;
+    }
+
+    function totalSupply() external view override returns (uint256) {
+        return _supply;
+    }
+
+    function balanceOf(address account) external view override returns (uint256) {
+        return _balances[account];
+    }
+
+    function transfer(address to, uint256 amount) external override returns (bool) {
+        require(_balances[msg.sender] >= amount, "Not enough tokens");
+        _balances[msg.sender] -= amount;
+        _balances[to] += amount;
+        return true;
     }
 }
 </code></pre>
 
 <ul>
-  <li><code>Greeter</code> implements the <code>IGreeter</code> interface by defining the <code>greet()</code> function.</li>
-  <li>Interfaces are often used when interacting with other contracts (like ERC-20).</li>
+  <li><code>MiniToken</code> conforms to the <code>IERC20</code> interface for ERC-20 compatibility.</li>
 </ul>
 
 <hr>
 
 <h2>✅ Summary Table</h2>
 
-<table>
+<table border="1" cellpadding="8" cellspacing="0">
   <thead>
     <tr>
       <th>Concept</th>
       <th>Description</th>
-      <th>Usage</th>
+      <th>ERC-20 Example</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>Inheritance</strong></td>
-      <td>Child contracts inherit variables and functions from parent contracts.</td>
-      <td><code>contract Child is Parent {}</code></td>
+      <td>Child contracts inherit variables and functions from base contracts.</td>
+      <td><code>MyToken is ERC20</code></td>
     </tr>
     <tr>
       <td><strong>Abstract Contracts</strong></td>
-      <td>Cannot be deployed directly. Must be extended and implemented.</td>
-      <td><code>abstract contract X { function foo() public virtual; }</code></td>
+      <td>Define structure but not full logic; must be extended.</td>
+      <td><code>AbstractERC20</code> with <code>transfer()</code></td>
     </tr>
     <tr>
       <td><strong>Interfaces</strong></td>
-      <td>Define function signatures only, no implementation or state.</td>
-      <td><code>interface I { function x() external; }</code></td>
+      <td>Only declare external functions — no implementation.</td>
+      <td><code>IERC20</code></td>
     </tr>
   </tbody>
 </table>
 
 <hr>
 
-<p>🎉 That wraps up Week 6 of Solidity Mondays. You're now equipped with tools for structuring smart contracts like a pro — using inheritance, abstract classes, and interfaces!</p>
+<p>🎉 That wraps up Week 6 of Solidity Mondays. You're now equipped with tools to structure smart contracts like ERC-20 tokens — using inheritance, abstract contracts, and interfaces!</p>
+
 
 
 ### Materials:
