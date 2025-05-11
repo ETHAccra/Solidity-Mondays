@@ -1012,6 +1012,145 @@ contract SimpleBank {
 - Abstract contracts.
 - Interfaces: Defining and implementing interfaces.
 
+<summary><strong>Week 6: Inheritance, Abstract Contracts, and Interfaces</strong></summary>
+
+<h1>Solidity Mondays: Inheritance, Abstract Contracts, and Interfaces</h1>
+
+<p>Welcome back to Solidity Mondays!<br>
+In this session, we’re diving into three advanced but powerful topics: <strong>Inheritance</strong>, <strong>Abstract Contracts</strong>, and <strong>Interfaces</strong>.</p>
+
+<hr>
+
+<h2>📚 1. Inheritance in Solidity</h2>
+
+<p>Solidity supports <strong>inheritance</strong>, which allows you to create a base contract and extend it into child contracts. This helps with code reuse, structure, and modularity.</p>
+
+<h3>🔵 The <code>is</code> Keyword</h3>
+<ul>
+  <li>Use <code>is</code> to make a contract inherit from another.</li>
+  <li>The child contract gains access to all public and internal variables/functions of the parent.</li>
+</ul>
+
+<h3>📘 Example: Parent and Child Contracts</h3>
+
+<pre><code>// Parent contract
+contract Animal {
+    string public species;
+
+    function setSpecies(string memory _species) public {
+        species = _species;
+    }
+}
+
+// Child contract
+contract Dog is Animal {
+    function bark() public pure returns (string memory) {
+        return "Woof!";
+    }
+}
+</code></pre>
+
+<ul>
+  <li><code>Dog</code> inherits the <code>setSpecies()</code> and <code>species</code> from <code>Animal</code>.</li>
+  <li>You can now call <code>setSpecies()</code> and <code>bark()</code> on a <code>Dog</code> contract.</li>
+</ul>
+
+<hr>
+
+<h2>📚 2. Abstract Contracts</h2>
+
+<p>An <strong>abstract contract</strong> is a contract that <strong>cannot be deployed directly</strong>.</p>
+<p>It contains at least one <strong>unimplemented function</strong> — meaning the function has no body and must be overridden by a child contract.</p>
+
+<h3>📘 Example: Abstract Contract</h3>
+
+<pre><code>abstract contract Shape {
+    function area() public view virtual returns (uint);
+}
+
+contract Square is Shape {
+    uint public length = 5;
+
+    function area() public view override returns (uint) {
+        return length * length;
+    }
+}
+</code></pre>
+
+<ul>
+  <li><code>Shape</code> defines the abstract function <code>area()</code>.</li>
+  <li><code>Square</code> implements the missing function and becomes deployable.</li>
+</ul>
+
+<hr>
+
+<h2>📚 3. Interfaces in Solidity</h2>
+
+<p><strong>Interfaces</strong> are like contracts but can only declare functions — they cannot contain any implementation or state.</p>
+<p>They are useful for defining how contracts should behave without dictating the internal logic.</p>
+
+<h3>🧩 Rules for Interfaces:</h3>
+<ul>
+  <li>All functions must be <code>external</code> and unimplemented.</li>
+  <li>No constructor, state variables, or function bodies.</li>
+</ul>
+
+<h3>📘 Example: Interface Definition & Implementation</h3>
+
+<pre><code>// Interface
+interface IGreeter {
+    function greet() external view returns (string memory);
+}
+
+// Implementing Contract
+contract Greeter is IGreeter {
+    function greet() external pure override returns (string memory) {
+        return "Hello, Interface!";
+    }
+}
+</code></pre>
+
+<ul>
+  <li><code>Greeter</code> implements the <code>IGreeter</code> interface by defining the <code>greet()</code> function.</li>
+  <li>Interfaces are often used when interacting with other contracts (like ERC-20).</li>
+</ul>
+
+<hr>
+
+<h2>✅ Summary Table</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Description</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Inheritance</strong></td>
+      <td>Child contracts inherit variables and functions from parent contracts.</td>
+      <td><code>contract Child is Parent {}</code></td>
+    </tr>
+    <tr>
+      <td><strong>Abstract Contracts</strong></td>
+      <td>Cannot be deployed directly. Must be extended and implemented.</td>
+      <td><code>abstract contract X { function foo() public virtual; }</code></td>
+    </tr>
+    <tr>
+      <td><strong>Interfaces</strong></td>
+      <td>Define function signatures only, no implementation or state.</td>
+      <td><code>interface I { function x() external; }</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<p>🎉 That wraps up Week 6 of Solidity Mondays. You're now equipped with tools for structuring smart contracts like a pro — using inheritance, abstract classes, and interfaces!</p>
+
+
 ### Materials:
 - **Online Resources**: [Solidity Documentation](https://soliditylang.org/).
 - **Practice**: Create a parent contract with shared functionality and a child contract that inherits from it.
