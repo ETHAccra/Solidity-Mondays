@@ -1250,11 +1250,8 @@ contract MiniToken is IERC20 {
 
 </details>
 
----
----
-
 <details>
-<summary><strong>Week 10: Advanced Topics and Final Project</strong></summary>
+<summary><strong>Week 9: Advanced Topics and Final Project</strong></summary>
 
 ### Topics Covered:
 - Upgradeable contracts using proxies.
