@@ -1249,7 +1249,7 @@ contract MiniToken is IERC20 {
 - **Practice**: Deploy your voting contract to a testnet and interact with it using a simple frontend.
 
 </details>
-
+---
 <details>
 <summary><strong>Week 9: Advanced Topics and Final Project</strong></summary>
 
@@ -1263,7 +1263,7 @@ contract MiniToken is IERC20 {
 - **Final Project**: Build and deploy a decentralized application (dApp) that incorporates everything you’ve learned.
 
 </details>
----
+
 ---
 
 ## Additional Resources
