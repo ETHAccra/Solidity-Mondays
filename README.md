@@ -1016,6 +1016,10 @@ contract SimpleBank {
 
 <h1>Solidity Mondays: Inheritance, Abstract Contracts, and Interfaces</h1>
 
+- ERC-20: Fungible tokens.
+- ERC-721: Non-fungible tokens (NFTs).
+- ERC-1155: Multi-token standard.
+
 <p>Welcome back to Solidity Mondays!<br>
 In this session, we’re diving into three advanced but powerful topics: <strong>Inheritance</strong>, <strong>Abstract Contracts</strong>, and <strong>Interfaces</strong> — using real-world ERC-20 token contract examples.</p>
 
@@ -1247,21 +1251,6 @@ contract MiniToken is IERC20 {
 </details>
 
 ---
-
-<details>
-<summary><strong>Week 9: Tokens and Standards</strong></summary>
-
-### Topics Covered:
-- ERC-20: Fungible tokens.
-- ERC-721: Non-fungible tokens (NFTs).
-- ERC-1155: Multi-token standard.
-
-### Materials:
-- **Book**: *Mastering Ethereum* (Chapter 10: Tokens).
-- **Practice**: Create and deploy your own ERC-20 token.
-
-</details>
-
 ---
 
 <details>
