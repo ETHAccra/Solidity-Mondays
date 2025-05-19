@@ -1263,7 +1263,7 @@ contract MiniToken is IERC20 {
 - **Final Project**: Build and deploy a decentralized application (dApp) that incorporates everything you’ve learned.
 
 </details>
-
+---
 ---
 
 ## Additional Resources
